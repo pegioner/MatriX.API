@@ -1,86 +1,86 @@
-# AI Документация
-[![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/immisterio/MatriX.API)
+# AI Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ
+[![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/pegioner/MatriX.API)
 
-# Установка на linux
+# РЈСЃС‚Р°РЅРѕРІРєР° РЅР° linux
 ```
-curl -s https://raw.githubusercontent.com/immisterio/MatriX.API/master/install.sh | bash
+curl -s https://raw.githubusercontent.com/pegioner/MatriX.API/master/install.sh | bash
 ```
 
 # usersDb.json
 ```
 [
   {
-    "domainid": "ogurchik", // доступ без авторизации через ogurchik.matrix.io
-    "expires": "0001-01-01T00:00:00" // доступ без ограничения по времени
+    "domainid": "ogurchik", // РґРѕСЃС‚СѓРї Р±РµР· Р°РІС‚РѕСЂРёР·Р°С†РёРё С‡РµСЂРµР· ogurchik.matrix.io
+    "expires": "0001-01-01T00:00:00" // РґРѕСЃС‚СѓРї Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёСЏ РїРѕ РІСЂРµРјРµРЅРё
   },
   {
-    "login": "ts2", // доступ с авторизацией через matrix.io
+    "login": "ts2", // РґРѕСЃС‚СѓРї СЃ Р°РІС‚РѕСЂРёР·Р°С†РёРµР№ С‡РµСЂРµР· matrix.io
     "passwd": "test",
-    "expires": "2025-09-01T16:43:00" // доступ до 01.09.2025 16:43
+    "expires": "2025-09-01T16:43:00" // РґРѕСЃС‚СѓРї РґРѕ 01.09.2025 16:43
   }
 ]
 ```
 
-# Переменные пользователя в usersDb.json
-* domainid - домен для доступа без авторизации
-* login/passwd - данные пользователя для авторизации
-* versionts - версия TorrServer, пользователь может выбрать в matrix.io/control
-* server - адрес сервера, пользователь может выбрать в matrix.io/control
-* expires - ограничения доступа по времени
-* maxiptoIsLockHostOrUser - переопределение maxiptoIsLockHostOrUser из settings.json
-* maxIpToStream - переопределение maxIpToStream из settings.json
+# РџРµСЂРµРјРµРЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ usersDb.json
+* domainid - РґРѕРјРµРЅ РґР»СЏ РґРѕСЃС‚СѓРїР° Р±РµР· Р°РІС‚РѕСЂРёР·Р°С†РёРё
+* login/passwd - РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ Р°РІС‚РѕСЂРёР·Р°С†РёРё
+* versionts - РІРµСЂСЃРёСЏ TorrServer, РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РјРѕР¶РµС‚ РІС‹Р±СЂР°С‚СЊ РІ matrix.io/control
+* server - Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР°, РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РјРѕР¶РµС‚ РІС‹Р±СЂР°С‚СЊ РІ matrix.io/control
+* expires - РѕРіСЂР°РЅРёС‡РµРЅРёСЏ РґРѕСЃС‚СѓРїР° РїРѕ РІСЂРµРјРµРЅРё
+* maxiptoIsLockHostOrUser - РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ maxiptoIsLockHostOrUser РёР· settings.json
+* maxIpToStream - РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ maxIpToStream РёР· settings.json
 * admin - true/false
 
-# Переменные settings.json
-* port - порт запуска ip:port
+# РџРµСЂРµРјРµРЅРЅС‹Рµ settings.json
+* port - РїРѕСЂС‚ Р·Р°РїСѓСЃРєР° ip:port
 * IPAddressAny - true ip:port / false 127.0.0.1:port
-* worknodetominutes - время работы ts с момента последней активности пользователя
-* maxiptoIsLockHostOrUser - максимальной количество IP в час на пользователя
-* maxIpToStream - максимальное количество IP в час на пользователя для стриминга
-* domainid_pattern - поиск domainid для доступа без авторизации, "^([^\\.])\\.matrix.io" / ogurchik.matrix.io
-* domainid_api - домен для авторизации по login/passwd, "matrix.io"
-* AuthorizationRequired - true доступ для пользователей usersDb.json / false любой логин и пароль
-* onlyRemoteApi - true режим API для master сервера / false master сервер
-* servers - список серверов
-* AuthorizationServerAPI - ip сервера с которого разрешены API запросы
-* interface_network - имя интерфейса для статистики нагрузки на канал (по умолчанию eth0)
-* group - минимальная группа пользователя для доступа к серверу
-* groupSettings - настройки сервера в зависимости от группы пользователя
-* rateLimiter - лимит видеопотоков для пользователей
-  * timeout - время в секундах, после которого сбрасывается лимит
-  * limitStream - количество потоков в час на пользователя
-  * urlVideoError - адрес видео ошибки при превышении лимита
+* worknodetominutes - РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ ts СЃ РјРѕРјРµРЅС‚Р° РїРѕСЃР»РµРґРЅРµР№ Р°РєС‚РёРІРЅРѕСЃС‚Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+* maxiptoIsLockHostOrUser - РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ РєРѕР»РёС‡РµСЃС‚РІРѕ IP РІ С‡Р°СЃ РЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+* maxIpToStream - РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ IP РІ С‡Р°СЃ РЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ СЃС‚СЂРёРјРёРЅРіР°
+* domainid_pattern - РїРѕРёСЃРє domainid РґР»СЏ РґРѕСЃС‚СѓРїР° Р±РµР· Р°РІС‚РѕСЂРёР·Р°С†РёРё, "^([^\\.])\\.matrix.io" / ogurchik.matrix.io
+* domainid_api - РґРѕРјРµРЅ РґР»СЏ Р°РІС‚РѕСЂРёР·Р°С†РёРё РїРѕ login/passwd, "matrix.io"
+* AuthorizationRequired - true РґРѕСЃС‚СѓРї РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ usersDb.json / false Р»СЋР±РѕР№ Р»РѕРіРёРЅ Рё РїР°СЂРѕР»СЊ
+* onlyRemoteApi - true СЂРµР¶РёРј API РґР»СЏ master СЃРµСЂРІРµСЂР° / false master СЃРµСЂРІРµСЂ
+* servers - СЃРїРёСЃРѕРє СЃРµСЂРІРµСЂРѕРІ
+* AuthorizationServerAPI - ip СЃРµСЂРІРµСЂР° СЃ РєРѕС‚РѕСЂРѕРіРѕ СЂР°Р·СЂРµС€РµРЅС‹ API Р·Р°РїСЂРѕСЃС‹
+* interface_network - РёРјСЏ РёРЅС‚РµСЂС„РµР№СЃР° РґР»СЏ СЃС‚Р°С‚РёСЃС‚РёРєРё РЅР°РіСЂСѓР·РєРё РЅР° РєР°РЅР°Р» (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ eth0)
+* group - РјРёРЅРёРјР°Р»СЊРЅР°СЏ РіСЂСѓРїРїР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє СЃРµСЂРІРµСЂСѓ
+* groupSettings - РЅР°СЃС‚СЂРѕР№РєРё СЃРµСЂРІРµСЂР° РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+* rateLimiter - Р»РёРјРёС‚ РІРёРґРµРѕРїРѕС‚РѕРєРѕРІ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+  * timeout - РІСЂРµРјСЏ РІ СЃРµРєСѓРЅРґР°С…, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ СЃР±СЂР°СЃС‹РІР°РµС‚СЃСЏ Р»РёРјРёС‚
+  * limitStream - РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕС‚РѕРєРѕРІ РІ С‡Р°СЃ РЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+  * urlVideoError - Р°РґСЂРµСЃ РІРёРґРµРѕ РѕС€РёР±РєРё РїСЂРё РїСЂРµРІС‹С€РµРЅРёРё Р»РёРјРёС‚Р°
 
-# Переменные servers в settings.json
+# РџРµСЂРµРјРµРЅРЅС‹Рµ servers РІ settings.json
 * enable - true/false
-* reserve - резервный сервер, участвует только если основные перегружены или недоступны (true/false)
-* workinghours - время когда сервер доступен 
-* limit - лимиты cpu/ram/network при достижении которых сервер перестает принимать запросы
-* limit_hard - жесткие лимиты cpu/ram/network если свободных серверов в рамках limit нету
-* name - отображаемое имя сервера в matrix.io/control
-* host - адрес сервера http://IP:PORT | https://domain.io | etc
-* group - группа пользователя которым доступен сервер
-* groups - группы пользователя которым доступен сервер
-* weight - вес сервера, используется для балансировки нагрузки между серверами
-* geo_hide - не использовать сервер для указанных геолокации пользователя
+* reserve - СЂРµР·РµСЂРІРЅС‹Р№ СЃРµСЂРІРµСЂ, СѓС‡Р°СЃС‚РІСѓРµС‚ С‚РѕР»СЊРєРѕ РµСЃР»Рё РѕСЃРЅРѕРІРЅС‹Рµ РїРµСЂРµРіСЂСѓР¶РµРЅС‹ РёР»Рё РЅРµРґРѕСЃС‚СѓРїРЅС‹ (true/false)
+* workinghours - РІСЂРµРјСЏ РєРѕРіРґР° СЃРµСЂРІРµСЂ РґРѕСЃС‚СѓРїРµРЅ 
+* limit - Р»РёРјРёС‚С‹ cpu/ram/network РїСЂРё РґРѕСЃС‚РёР¶РµРЅРёРё РєРѕС‚РѕСЂС‹С… СЃРµСЂРІРµСЂ РїРµСЂРµСЃС‚Р°РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·Р°РїСЂРѕСЃС‹
+* limit_hard - Р¶РµСЃС‚РєРёРµ Р»РёРјРёС‚С‹ cpu/ram/network РµСЃР»Рё СЃРІРѕР±РѕРґРЅС‹С… СЃРµСЂРІРµСЂРѕРІ РІ СЂР°РјРєР°С… limit РЅРµС‚Сѓ
+* name - РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРµ РёРјСЏ СЃРµСЂРІРµСЂР° РІ matrix.io/control
+* host - Р°РґСЂРµСЃ СЃРµСЂРІРµСЂР° http://IP:PORT | https://domain.io | etc
+* group - РіСЂСѓРїРїР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РєРѕС‚РѕСЂС‹Рј РґРѕСЃС‚СѓРїРµРЅ СЃРµСЂРІРµСЂ
+* groups - РіСЂСѓРїРїС‹ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РєРѕС‚РѕСЂС‹Рј РґРѕСЃС‚СѓРїРµРЅ СЃРµСЂРІРµСЂ
+* weight - РІРµСЃ СЃРµСЂРІРµСЂР°, РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєРё РЅР°РіСЂСѓР·РєРё РјРµР¶РґСѓ СЃРµСЂРІРµСЂР°РјРё
+* geo_hide - РЅРµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃРµСЂРІРµСЂ РґР»СЏ СѓРєР°Р·Р°РЅРЅС‹С… РіРµРѕР»РѕРєР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 
-# Пример servers в settings.json
+# РџСЂРёРјРµСЂ servers РІ settings.json
 ```
 "enable": true,
 "name": "Amsterdam",
 "host": "http://IP:8090",
-"workinghours": [18,19,20,21,22,23,24], // время работы сервера, указывается в UTC
+"workinghours": [18,19,20,21,22,23,24], // РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ СЃРµСЂРІРµСЂР°, СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РІ UTC
 "limit": {
-  "ram": 90, // проценты 1-100
-  "cpu": 40, // load average (5 минут)
-  "network": { // скорость в MBit/s 
-    "all": 800, // общая нагрузка на канал (in/out) 
-    "transmitted": 800 // скорость отдачи, используйте вместо all для duplex каналов
+  "ram": 90, // РїСЂРѕС†РµРЅС‚С‹ 1-100
+  "cpu": 40, // load average (5 РјРёРЅСѓС‚)
+  "network": { // СЃРєРѕСЂРѕСЃС‚СЊ РІ MBit/s 
+    "all": 800, // РѕР±С‰Р°СЏ РЅР°РіСЂСѓР·РєР° РЅР° РєР°РЅР°Р» (in/out) 
+    "transmitted": 800 // СЃРєРѕСЂРѕСЃС‚СЊ РѕС‚РґР°С‡Рё, РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РІРјРµСЃС‚Рѕ all РґР»СЏ duplex РєР°РЅР°Р»РѕРІ
   }
 }
 ```
 
-# Пример настройки master, serv1, serv2, reserve
+# РџСЂРёРјРµСЂ РЅР°СЃС‚СЂРѕР№РєРё master, serv1, serv2, reserve
 
 matrix.io - (ip 33.33.33.33)
 ```
@@ -97,7 +97,7 @@ matrix.io - (ip 33.33.33.33)
         "ram": 90,
         "cpu": 40,
         "network": {
-          "transmitted": 2000 // 2gb на отдачу, канал duplex
+          "transmitted": 2000 // 2gb РЅР° РѕС‚РґР°С‡Сѓ, РєР°РЅР°Р» duplex
         }
       },
       {
@@ -109,13 +109,13 @@ matrix.io - (ip 33.33.33.33)
           "ram": 90,
           "cpu": 40,
           "network": {
-            "all": 800 // 800 MBit/s (in/out), обычный канал
+            "all": 800 // 800 MBit/s (in/out), РѕР±С‹С‡РЅС‹Р№ РєР°РЅР°Р»
           }
         }
       },
       {
         "enable": true,
-        "reserve": true, // если Germany и Amsterdam недоступны
+        "reserve": true, // РµСЃР»Рё Germany Рё Amsterdam РЅРµРґРѕСЃС‚СѓРїРЅС‹
         "host": "http://45.32.232.3:8090"
       }
     ]
@@ -139,16 +139,16 @@ Germany, Amsterdam, reserve
 }
 ```
 
-# Изменить данные usersDb.json через http
+# РР·РјРµРЅРёС‚СЊ РґР°РЅРЅС‹Рµ usersDb.json С‡РµСЂРµР· http
 ```
 curl -X POST "http://<host>/api/users/updatedb" \
   -H "Content-Type: application/json" \
   -d '[{"login":"ts4","passwd":"test4","versionts":"118"},{"domainid":"ts6"}]'
 ```
 
-# Адреса
-* админка пользователя - matrix.io/control
-* для admin - matrix.io/torinfo
+# РђРґСЂРµСЃР°
+* Р°РґРјРёРЅРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ - matrix.io/control
+* РґР»СЏ admin - matrix.io/torinfo
 * matrix.io/userdata
 * matrix.io/xrealip
 * matrix.io/headers
