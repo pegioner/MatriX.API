@@ -12,7 +12,7 @@ chmod 755 dotnet-install.sh
 # Download zip
 mkdir $DEST -p 
 cd $DEST
-wget https://github.com/immisterio/MatriX.API/releases/latest/download/publish.zip
+wget https://github.com/pegioner/MatriX.API/releases/latest/download/publish.zip
 unzip -o publish.zip
 rm -f publish.zip
 
